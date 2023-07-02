@@ -6,7 +6,7 @@ from langchain.schema import HumanMessage, AIMessage
 from dotenv import load_dotenv
 
 
-def make_chain():
+def make_chain(collection):
     model = ChatOpenAI(
         model_name="gpt-3.5-turbo",
         temperature="0",
@@ -15,7 +15,7 @@ def make_chain():
     embedding = OpenAIEmbeddings()
 
     vector_store = Chroma(
-        collection_name="april-2023-economic",
+        collection_name=collection,
         embedding_function=embedding,
         persist_directory="src/data/chroma",
     )
@@ -31,7 +31,8 @@ def make_chain():
 if __name__ == "__main__":
     load_dotenv()
 
-    chain = make_chain()
+    chain = make_chain("april-2023-economic")
+    #chain = make_chain("rocket")
     chat_history = []
 
     while True:

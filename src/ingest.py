@@ -112,7 +112,7 @@ if __name__ == "__main__":
     load_dotenv()
 
     # Step 1: Parse PDF
-    file_path = "src/data/april-2023.pdf"
+    file_path = "src/data/file.pdf"
     raw_pages, metadata = parse_pdf(file_path)
 
     # Step 2: Create text chunks
@@ -132,7 +132,8 @@ if __name__ == "__main__":
     vector_store = Chroma.from_documents(
         document_chunks,
         embeddings,
-        collection_name="april-2023-economic",
+        #collection_name="april-2023-economic",
+        collection_name="rocket",
         persist_directory="src/data/chroma",
     )
 
